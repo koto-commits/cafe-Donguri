@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Donguri | どんぐり夕暮れのカフェ</title>
+
+  <!-- Google Fonts（英字：Cormorant Garamond / 日本語：Shippori Mincho） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+  <!-- ===================== ヘッダー ===================== -->
+  <header class="header">
+    <a href="#" class="header__logo">Café Donguri</a>
+    <nav class="header__nav">
+      <a href="#concept">Concept</a>
+      <a href="#menu">Menu</a>
+      <a href="#shop">Shop</a>
+    </nav>
+    <button class="cart-btn" aria-label="カートを開く">
+      Cart <span class="cart-btn__count">0</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===================== トップ：写真のコラージュ ===================== -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="hero__en">— a café where the sun never sets</p>
+        <h1 class="hero__title">Café<br>Donguri</h1>
+        <p class="hero__sub">どんぐり夕暮れのカフェ。</p>
+        <a href="#menu" class="btn">Mobile Order</a>
+      </div>
+
+      <!-- 写真のコラージュ。画像ができたら <span>〜</span> を <img src="images/〇〇.jpg" alt=""> に変える -->
+      <div class="hero__collage">
+        <div class="photo ph-cream  collage-1"><img src="images/kesiki.jpg" alt="景色"></div>
+        <div class="photo ph-wood   collage-2"><img src="images/gaisou.jpg" alt="外装"></div>
+        <div class="gingham         collage-3"></div>
+        <div class="photo ph-sunset collage-4"><img src="images/naisou.jpg" alt="内装"></div>
+        <div class="photo ph-field  collage-5"><img src="images/panke-ki.jpg" alt="パンケーキ"></div>
+      </div>
+    </section>
+
+    <!-- ===================== コンセプト ===================== -->
+    <section class="section concept" id="concept">
+      <!-- 縦書きの一文（明朝体と相性ばつぐん） -->
+      <p class="concept__vertical fade-in">陽が沈む、その少し手前で。</p>
+
+      <div class="concept__body fade-in">
+        <h2 class="section__title">Concept</h2>
+        <p>
+          海沿いの小さな坂の上に、<br>
+          そのカフェはあります。<br>
+          金色の光と、温かいコーヒー。<br>
+          急がなくていい時間を、どうぞ。
+        </p>
+        <p class="concept__note"></p>
+      </div>
+
+      <div class="photo ph-marble concept__photo fade-in"><img src="images/naisou.jpg" alt="テーブル"></div>
+    </section>
+
+    <!-- ===================== メニュー ===================== -->
+    <section class="section menu" id="menu">
+      <h2 class="section__title">Menu</h2>
+      <p class="section__lead">お席にいながら、スマホでご注文いただけます。</p>
+
+      <div class="menu__tabs">
+        <button class="tab is-active" data-category="all">All</button>
+        <button class="tab" data-category="drink">Drink</button>
+        <button class="tab" data-category="food">Food</button>
+        <button class="tab" data-category="sweets">Sweets</button>
+      </div>
+
+      <!-- JS でメニューカードが並ぶ（中身は script.js の menuItems） -->
+      <div class="menu__grid"></div>
+    </section>
+
+    <!-- ===================== ギンガムの帯 ===================== -->
+    <div class="gingham gingham--band" aria-hidden="true"></div>
+
+    <!-- ===================== 店舗情報 ===================== -->
+    <section class="section shop" id="shop">
+      <div class="photo ph-sunset shop__photo fade-in"><img src="images/gaisou.jpg" alt="外装"></div>
+      <div class="shop__body fade-in">
+        <h2 class="section__title">Shop</h2>
+        <dl class="shop__info">
+          <dt>Address</dt>
+          <dd>夕凪町 1-7 海沿いの坂の上</dd>
+          <dt>Open</dt>
+          <dd> 11:30〜20:00</dd>
+          <dt>Access</dt>
+          <dd>菜の花の小道をまっすぐ、海が見えたら到着</dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__logo">Café Donguri</p>
+    <small>&copy; 2026 Café Donguri (practice / fictional)</small>
+  </footer>
+
+  <!-- ===================== カート ===================== -->
+  <div class="overlay"></div>
+  <aside class="cart">
+    <div class="cart__head">
+      <h2>Your Order</h2>
+      <button class="cart__close" aria-label="カートを閉じる">✕</button>
+    </div>
+    <ul class="cart__list"></ul>
+    <p class="cart__empty">まだ何も選ばれていません</p>
+    <div class="cart__foot">
+      <p class="cart__total">合計 <span class="cart__total-price">¥0</span></p>
+      <button class="btn cart__order" disabled>注文する</button>
+    </div>
+  </aside>
+
+  <!-- スマホ用：画面下のカートバー -->
+  <button class="cart-bar">
+    <span><span class="cart-bar__count">0</span> items</span>
+    <span class="cart-bar__total">¥0</span>
+    <span>View Order →</span>
+  </button>
+
+    <!-- ===================== 注文〜お支払い（checkout.js で動く） ===================== -->
+  <div class="checkout">
+    <div class="checkout__box">
+      <div class="checkout__head">
+        <p class="checkout__steps">
+          <span data-step-label="1">Pickup</span> —
+          <span data-step-label="2">Payment</span> —
+          <span data-step-label="3">Done</span>
+        </p>
+        <button class="checkout__close" aria-label="閉じる">✕</button>
+      </div>
+      <p class="checkout__demo">
+        これは練習用のデモです。実際の決済は行われません。<br>
+        本物のカード情報は入力しないでください（テスト用のカード番号のみ使えます）。
+      </p>
+
+      <!-- ステップ1：受け取り方法 -->
+      <section class="checkout__step" data-step="1">
+        <h2>受け取り方法</h2>
+        <div class="choice">
+          <label><input type="radio" name="dining" value="eatin" checked> 店内でお召し上がり <small>消費税10%</small></label>
+          <label><input type="radio" name="dining" value="takeout"> テイクアウト <small>軽減税率8%</small></label>
+        </div>
+
+        <h3>受け取り時間</h3>
+        <select class="checkout__time"></select>
+
+        <h3>お呼び出し用のお名前</h3>
+        <input type="text" class="checkout__nickname" placeholder="例：ゆうぐれ" maxlength="12">
+
+        <p class="checkout__error" data-error="1"></p>
+        <button class="btn checkout__next">お支払いへ進む</button>
+      </section>
+
+      <!-- ステップ2：お支払い -->
+      <section class="checkout__step" data-step="2" hidden>
+        <h2>お支払い方法</h2>
+        <div class="choice">
+          <label><input type="radio" name="pay" value="card" checked> クレジットカード</label>
+          <label><input type="radio" name="pay" value="qr"> QRコード決済</label>
+          <label><input type="radio" name="pay" value="store"> 店頭でお支払い</label>
+        </div>
+
+        <!-- カード -->
+        <div class="pay-panel" data-pay="card">
+          <button type="button" class="checkout__fill">テストカードを入力する</button>
+          <label class="field">カード番号 <span class="card-brand"></span>
+            <input type="text" class="card-number" inputmode="numeric" autocomplete="off" placeholder="4242 4242 4242 4242">
+          </label>
+          <div class="field-row">
+            <label class="field">有効期限
+              <input type="text" class="card-exp" inputmode="numeric" autocomplete="off" placeholder="MM / YY">
+            </label>
+            <label class="field">セキュリティコード
+              <input type="text" class="card-cvc" inputmode="numeric" autocomplete="off" placeholder="123">
+            </label>
+          </div>
+          <label class="field">カード名義
+            <input type="text" class="card-name" autocomplete="off" placeholder="TARO YAMADA">
+          </label>
+          <p class="checkout__hint">
+            テストカード：4242 4242 4242 4242（成功）／ 4000 0000 0000 0002（カード拒否）<br>
+            有効期限は未来の日付、セキュリティコードは3けたなら何でもOK
+          </p>
+        </div>
+
+        <!-- QRコード -->
+        <div class="pay-panel" data-pay="qr" hidden>
+          <div class="qr"></div>
+          <p>デモ用のQRコードです（読み取りはできません）</p>
+        </div>
+
+        <!-- 店頭払い -->
+        <div class="pay-panel" data-pay="store" hidden>
+          <p>受け取りの際に、レジでお支払いください。</p>
+        </div>
+
+        <!-- 注文内容 -->
+        <div class="summary">
+          <ul class="summary__items"></ul>
+          <p class="summary__row"><span>合計</span><span class="summary__total">¥0</span></p>
+          <p class="summary__tax"></p>
+        </div>
+
+        <p class="checkout__error" data-error="2"></p>
+        <div class="checkout__nav">
+          <button class="checkout__back">← 戻る</button>
+          <button class="btn checkout__pay">支払う</button>
+        </div>
+      </section>
+
+      <!-- 決済処理中 -->
+      <section class="checkout__step" data-step="processing" hidden>
+        <div class="spinner"></div>
+        <p>決済処理中です…</p>
+      </section>
+
+      <!-- ステップ3：完了（レシート） -->
+      <section class="checkout__step" data-step="3" hidden>
+        <p class="receipt__en">Thank you</p>
+        <h2>ご注文を承りました</h2>
+        <div class="receipt"></div>
+        <button class="btn checkout__done">メニューに戻る</button>
+      </section>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
